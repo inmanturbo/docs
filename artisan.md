@@ -1,4 +1,3 @@
-
 # Artisan Console
 
 - [Introduction](#introduction)
