@@ -119,11 +119,28 @@ If your migration will be interacting with a database connection other than your
 
 ```php
 /**
- * The database connection that should be used by the migration.
- *
- * @var string
+ * Run the migrations.
  */
-protected $connection = 'pgsql';
+public function up(): void
+{
+    // ...
+}
+```
+<a name="skipping-migrations"></a>
+#### Skipping Migrations
+
+If your migration has dependencies or is meant to support a feature that may not be activate yet, you may not want it to run unless its requirements are met. In this case you should implement the optional `shouldRun` method, to return a boolean value based on your needs:
+
+```php
+/**
+ * Determine if this migration should run.
+ *
+ * @return bool
+ */
+public function shouldRun()
+{
+    return Feature::active(Flights::class);
+}
 
 /**
  * Run the migrations.
